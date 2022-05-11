@@ -238,6 +238,7 @@ func (p *AzureProvider) verifyTokenAndExtractEmail(ctx context.Context, token st
 
 // RefreshSession uses the RefreshToken to fetch new Access and ID Tokens
 func (p *AzureProvider) RefreshSession(ctx context.Context, s *sessions.SessionState) (bool, error) {
+    logger.Printf("RefreshSession")
 	if s == nil || s.RefreshToken == "" {
 		return false, nil
 	}
@@ -251,6 +252,7 @@ func (p *AzureProvider) RefreshSession(ctx context.Context, s *sessions.SessionS
 }
 
 func (p *AzureProvider) redeemRefreshToken(ctx context.Context, s *sessions.SessionState) error {
+    logger.Printf("redeemRefreshToken")
 	clientSecret, err := p.GetClientSecret()
 	if err != nil {
 		return err
